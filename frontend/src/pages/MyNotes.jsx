@@ -128,7 +128,7 @@ const MyNotes = () => {
 
             {!search && (
               <button
-                onClick={() => navigate("/create-note")}
+                onClick={() => navigate("/createNote")}
                 className="mt-6 border border-black px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-black hover:text-white transition"
               >
                 Create your first note
