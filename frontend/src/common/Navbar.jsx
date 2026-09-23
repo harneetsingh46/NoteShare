@@ -48,7 +48,7 @@ const Navbar = () => {
               </Link>
 
               <Link
-                to="/create-note"
+                to="/createNote"
                 className="text-sm text-black hover:text-black transition"
               >
                 Create Note
