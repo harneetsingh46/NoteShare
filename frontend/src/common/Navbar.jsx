@@ -24,14 +24,14 @@ const Navbar = () => {
           {/* Always visible */}
           <Link
             to="/"
-            className="text-sm text-gray-700 hover:text-black transition"
+            className="text-sm text-black hover:text-black transition"
           >
             Home
           </Link>
 
           <Link
             to="/about"
-            className="text-sm text-gray-700 hover:text-black transition"
+            className="text-sm text-black hover:text-black transition"
           >
             About
           </Link>
@@ -42,21 +42,21 @@ const Navbar = () => {
             <>
               <Link
                 to="/notes"
-                className="text-sm text-gray-700 hover:text-black transition"
+                className="text-sm text-black hover:text-black transition"
               >
                 Notes
               </Link>
 
               <Link
                 to="/create-note"
-                className="text-sm text-gray-700 hover:text-black transition"
+                className="text-sm text-black hover:text-black transition"
               >
                 Create Note
               </Link>
 
               <Link
                 to="/my-notes"
-                className="text-sm text-gray-700 hover:text-black transition"
+                className="text-sm text-black hover:text-black transition"
               >
                 My Notes
               </Link>
@@ -77,7 +77,7 @@ const Navbar = () => {
 
               {/* User name */}
               <span className="text-sm text-gray-600">
-                {user?.name}
+                Hi,{user?.name}
               </span>
 
               <button

@@ -69,7 +69,7 @@ const MyNotes = () => {
 
           {/* CREATE NOTE */}
           <button
-            onClick={() => navigate("/create-note")}
+            onClick={() => navigate("/createNote")}
             className="bg-black text-white px-5 py-3 rounded-lg text-sm font-medium hover:bg-gray-800 transition duration-200"
           >
             + Create Note
