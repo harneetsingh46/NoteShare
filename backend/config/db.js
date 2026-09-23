@@ -2,12 +2,15 @@ import mongoose from "mongoose";
 
 async function connectDb() {
     try {
+        if (mongoose.connection.readyState === 1) {
+            return;
+        }
+
         await mongoose.connect(process.env.MONGO_URL);
-        console.log("MongoDB connected")
-    }
-    catch(error) {
-        console.log(error);
-        process.exit(1);
+        console.log("MongoDB connected");
+    } catch (error) {
+        console.error("MongoDB connection failed:", error);
+        throw error;
     }
 }
 
