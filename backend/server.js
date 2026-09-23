@@ -5,6 +5,8 @@ import userRoutes from "./routes/userRoutes.js";
 import notesRoutes from "./routes/notesRoutes.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import mongoose from "mongoose";
+app.get("/api/db-check", (req, res) => res.json({ state: mongoose.connection.readyState }));
 
 dotenv.config();
 

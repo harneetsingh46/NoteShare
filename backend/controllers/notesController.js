@@ -46,6 +46,21 @@ export const getAllNotes = async (req, res) => {
     });
   }
 };
+export const getMyNotes = async (req, res) => {
+  try {
+    const notes = await Notes.find({ createdBy: req.user._id });
+
+    return res.status(200).json({
+      message: "Notes fetched successfully",
+      notes: notes,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Error occured",
+      error: error.message,
+    });
+  }
+};
 
 export const getNoteById = async (req, res) => {
   try {

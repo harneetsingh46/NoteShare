@@ -15,6 +15,7 @@ import ViewNote from "./pages/ViewNote"
 
 import ProtectedRoutes from "../src/utils/ProtectedRoutes"
 import PublicRoutes from "../src/utils/PublicRoutes"
+import MyNotes from "./pages/MyNotes"
 
 
 const App = () => {
@@ -64,7 +65,10 @@ const App = () => {
               path: "/createNote",
               element: <CreateNote />
             },
-
+            {
+              path: "/my-notes",
+              element: <MyNotes />
+            },
             {
               path: "/notes/:id",
               element: <ViewNote />

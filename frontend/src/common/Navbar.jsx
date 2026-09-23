@@ -1,101 +1,100 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useAuth } from "../Context/AuthContext"
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../Context/AuthContext";
 
 const Navbar = () => {
-  const { isAuthenticated, user } = useAuth();
+  const { user, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
   return (
-    <nav className='w-full bg-white text-black border-b border-gray-200 sticky top-0 z-50 bg-white shadow'>
+    <nav className="w-full bg-white border-b border-gray-200">
+      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
 
-      <div className='max-w-7xl mx-auto px-5 lg:px-8'>
+        {/* Logo */}
+        <Link
+          to="/"
+          className="text-xl font-semibold tracking-tight"
+        >
+          NoteShare
+        </Link>
 
-        <div className='h-20 flex items-center justify-between'>
+        {/* Navigation */}
+        <div className="flex items-center gap-6">
 
-          {/* Logo */}
+          {/* Always visible */}
           <Link
-            to='/'
-            className='text-2xl font-bold tracking-tight'
+            to="/"
+            className="text-sm text-gray-700 hover:text-black transition"
           >
-            NoteShare
+            Home
+          </Link>
+
+          <Link
+            to="/about"
+            className="text-sm text-gray-700 hover:text-black transition"
+          >
+            About
           </Link>
 
 
-          {/* Navigation */}
-          <div className='hidden md:flex items-center gap-8'>
+          {/* Only visible when logged in */}
+          {isAuthenticated && (
+            <>
+              <Link
+                to="/notes"
+                className="text-sm text-gray-700 hover:text-black transition"
+              >
+                Notes
+              </Link>
 
+              <Link
+                to="/create-note"
+                className="text-sm text-gray-700 hover:text-black transition"
+              >
+                Create Note
+              </Link>
+
+              <Link
+                to="/my-notes"
+                className="text-sm text-gray-700 hover:text-black transition"
+              >
+                My Notes
+              </Link>
+            </>
+          )}
+
+
+          {/* Authentication */}
+          {!isAuthenticated ? (
             <Link
-              to='/'
-              className='text-sm font-medium text-gray-600 hover:text-black transition'
+              to="/login"
+              className="bg-black text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-800 transition"
             >
-              Home
+              Login
             </Link>
+          ) : (
+            <div className="flex items-center gap-3">
 
-            <Link
-              to='/createNote'
-              className='text-sm font-medium text-gray-600 hover:text-black transition'
-            >
-              Create Note
-            </Link>
-            
-            <Link
-              to='/notes'
-              className='text-sm font-medium text-gray-600 hover:text-black transition'
-            >
-              Notes
-            </Link>
+              {/* User name */}
+              <span className="text-sm text-gray-600">
+                {user?.name}
+              </span>
 
-            <Link
-              to='/about'
-              className='text-sm font-medium text-gray-600 hover:text-black transition'
-            >
-              About
-            </Link>
+              <button
+                onClick={() => navigate("/signout")}
+                className="border border-black px-4 py-2 rounded-lg text-sm font-medium hover:bg-black hover:text-white transition"
+              >
+                Logout
+              </button>
 
-          </div>
-
-
-          {/* Auth Buttons */}
-          <div className='hidden md:flex items-center gap-3'>
-            {isAuthenticated ? (
-              <>
-                <span className="welcome-text">Hi, {user.email}</span>
-                <Link className='px-5 py-2.5 bg-black text-white rounded-lg text-sm font-medium hover:bg-gray-800 transition' to="/signout">Sign Out</Link>
-              </>
-            ) : (
-              <>
-                <Link
-                  to='/login'
-                  className='px-4 py-2 text-sm font-medium hover:text-gray-600 transition'
-                >
-                  Login
-                </Link>
-                <Link
-                  to='/register'
-                  className='px-5 py-2.5 bg-black text-white rounded-lg text-sm font-medium hover:bg-gray-800 transition'
-                >
-                  Get Started
-                </Link>
-              </>
-            )}
-
-
-
-
-          </div>
-
-
-          {/* Mobile Button */}
-          <button className='md:hidden border border-gray-300 rounded-lg px-3 py-2'>
-            ☰
-          </button>
+            </div>
+          )}
 
         </div>
 
       </div>
-
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
