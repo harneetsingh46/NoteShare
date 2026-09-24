@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import Notes from "../models/Notes.js";
 
+import Notes from "../models/Notes.js";
+
 export const createNote = async (req, res) => {
   const { title, content, semester, subject } = req.body;
 
@@ -19,13 +21,13 @@ export const createNote = async (req, res) => {
       createdBy: req.user._id,
     });
 
-    return res.status(200).json({
+    return res.status(201).json({
       message: "Note created successfully",
-      note: note,
+      note,
     });
   } catch (error) {
     return res.status(500).json({
-      message: "Error occured",
+      message: "Error occurred",
       error: error.message,
     });
   }
@@ -48,15 +50,17 @@ export const getAllNotes = async (req, res) => {
 };
 export const getMyNotes = async (req, res) => {
   try {
-    const notes = await Notes.find({ createdBy: req.user._id });
+    const notes = await Notes.find({
+      createdBy: req.user._id,
+    }).sort({ createdAt: -1 });
 
     return res.status(200).json({
-      message: "Notes fetched successfully",
-      notes: notes,
+      message: "My notes fetched successfully",
+      notes,
     });
   } catch (error) {
     return res.status(500).json({
-      message: "Error occured",
+      message: "Error occurred",
       error: error.message,
     });
   }
