@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
 import Notes from "../models/Notes.js";
 
-import Notes from "../models/Notes.js";
-
 export const createNote = async (req, res) => {
   const { title, content, semester, subject } = req.body;
 
